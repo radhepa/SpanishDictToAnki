@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-labelledby="t d">
+  <title id="t">How SpanishDict to Anki Exporter works</title>
+  <desc id="d">The popup injects the scraper into the SpanishDict list tab, receives the words, then sends them through anki.js to AnkiConnect, which adds the notes to Anki.</desc>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#ffc23d" />
+    </marker>
+    <style>
+      .bg { fill: #0e1020; }
+      .node { fill: #171a30; stroke: #2c3160; stroke-width: 2; }
+      .hot { stroke: #ffc23d; }
+      .t1 { fill: #f5f3ee; font: 700 22px 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .t2 { fill: #9aa0bd; font: 400 16px 'Segoe UI', Helvetica, Arial, sans-serif; }
+      .code { fill: #ffc23d; font: 600 15px Consolas, 'Courier New', monospace; }
+      .lbl { fill: #cfd4f0; font: 600 14px Consolas, 'Courier New', monospace; }
+      .step { fill: #ff5d4a; font: 700 15px Consolas, 'Courier New', monospace; letter-spacing: 1px; }
+      .edge { stroke: #ffc23d; stroke-width: 3; fill: none; marker-end: url(#arr); }
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="420" rx="24" />
+
+  <!-- nodes -->
+  <rect class="node" x="40" y="130" width="240" height="160" rx="18" />
+  <text class="step" x="62" y="164">01</text>
+  <text class="t1" x="62" y="196">SpanishDict</text>
+  <text class="t2" x="62" y="224">your open list tab</text>
+  <text class="code" x="62" y="262">a[href*="/translate/"]</text>
+
+  <rect class="node hot" x="340" y="130" width="240" height="160" rx="18" />
+  <text class="step" x="362" y="164">02</text>
+  <text class="t1" x="362" y="196">content.js</text>
+  <text class="t2" x="362" y="224">scrapes by structure</text>
+  <text class="code" x="362" y="262">{ listName, words[] }</text>
+
+  <rect class="node hot" x="640" y="130" width="240" height="160" rx="18" />
+  <text class="step" x="662" y="164">03</text>
+  <text class="t1" x="662" y="196">popup.js + anki.js</text>
+  <text class="t2" x="662" y="224">picks note type, builds notes</text>
+  <text class="code" x="662" y="262">addNotes (1 batch)</text>
+
+  <rect class="node" x="940" y="130" width="220" height="160" rx="18" />
+  <text class="step" x="962" y="164">04</text>
+  <text class="t1" x="962" y="196">Anki Desktop</text>
+  <text class="t2" x="962" y="224">via AnkiConnect</text>
+  <text class="code" x="962" y="262">SpanishDict::&lt;list&gt;</text>
+
+  <!-- edges -->
+  <path class="edge" d="M284 210 L334 210" />
+  <path class="edge" d="M584 210 L634 210" />
+  <path class="edge" d="M884 210 L934 210" />
+
+  <text class="lbl" x="296" y="110">executeScript</text>
+  <text class="lbl" x="596" y="110">words</text>
+  <text class="lbl" x="880" y="110">JSON-RPC v6</text>
+
+  <text class="t2" x="40" y="352">Everything stays on your machine: 127.0.0.1:8765 only. No remote server, no analytics.</text>
+</svg>
